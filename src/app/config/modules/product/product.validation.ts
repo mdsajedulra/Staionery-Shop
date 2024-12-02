@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // Define the Zod schema
-export const StationeryProductSchema = z.object({
+ const ProductValidationSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
   brand: z.string().min(1, { message: "Brand is required" }),
   price: z.number().min(0, { message: "Price must be a positive number" }),
@@ -11,5 +11,4 @@ export const StationeryProductSchema = z.object({
   inStock: z.boolean(),
 });
 
-// Export a TypeScript type inferred from the Zod schema
-export default StationeryProductSchema;
+export default ProductValidationSchema;
