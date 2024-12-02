@@ -1,6 +1,6 @@
 
 
-type StationeryProduct = {
+type StationeryProductType = {
     name: string; 
     brand: string;
     price: number;
@@ -10,4 +10,4 @@ type StationeryProduct = {
     inStock: boolean; 
   };
   
-  export default StationeryProduct;
+  export default StationeryProductType;

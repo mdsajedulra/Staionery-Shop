@@ -2,24 +2,43 @@ import { Request, Response } from "express";
 import { productService } from "./product.service";
 import ProductValidationSchema from "./product.validation";
 
+
+// craete product controller
 const createProduct = async (req: Request, res: Response) =>{
     try {
         const {product} = req.body;
-
 // data validation using zod
 
 const zodparsedData = ProductValidationSchema.parse(product)
-
-
-
        const result= await productService.createProductIntoDB(zodparsedData);
-       res.send(result)
+       res.status(200).json({
+        message: "Product created successfully",
+        success: true,
+        data: result
+       })      
         
     } catch (error) {
-        res.send(error)
+        res.status(500).send(error)
     }
+}
+// Get All Stationery Products constroller
+const getAllProducts = async(req:Request, res: Response) =>{
+    try {
+        const result = await productService.getAllProductFromDB();
+        res.status(200).json({
+            message: "Products retrieved successfully",
+            success: true,
+            data: result
+           }) 
+    } catch (error) {
+        res.status(500).json({
+            message: "something went rong"
+        })
+    }
+    
 }
 
 export const ProductControllers = {
     createProduct,
+    getAllProducts
 }

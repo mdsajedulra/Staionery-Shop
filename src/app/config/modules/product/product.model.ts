@@ -1,11 +1,11 @@
 import { model, Schema } from "mongoose";
-import StationeryProduct from "./product.interface";
+import StationeryProductType from "./product.interface";
 
 
 
 
 // staioner product schema
-const StationeryProductSchema = new Schema<StationeryProduct>({
+const StationeryProductTypeSchema = new Schema<StationeryProductType>({
     name: {
       type: String,
       required: true,
@@ -36,6 +36,9 @@ const StationeryProductSchema = new Schema<StationeryProduct>({
       type: Boolean,
       required: true,
     },
-  });
+    
+  },{ timestamps: true });
 
-  export const ProductModel = model<StationeryProduct>('product', StationeryProductSchema);
+  export const ProductModel = model<StationeryProductType>('product', StationeryProductTypeSchema);
+
+  
