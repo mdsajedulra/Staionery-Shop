@@ -12,7 +12,13 @@ const getAllProductFromDB = async() =>{
     const result = await ProductModel.find()
     return result;
 }
+// retrive specific data by id
+const getSpacificProductFromDB = async(productId:string) =>{
+    const result = await ProductModel.findById(productId);
+    return result;
+}
 export const productService = {
     createProductIntoDB,
-    getAllProductFromDB
+    getAllProductFromDB,
+    getSpacificProductFromDB
 }

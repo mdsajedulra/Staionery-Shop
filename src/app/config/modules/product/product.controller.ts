@@ -38,7 +38,25 @@ const getAllProducts = async(req:Request, res: Response) =>{
     
 }
 
+//get a specific product
+
+const getProductById = async(req: Request, res: Response) =>{
+    const {productId} = req.params;
+     const result = await productService.getSpacificProductFromDB(productId);
+     try {
+        res.status(200).json({
+            message: "Product retrieved successfully",
+            success: true,
+            data: result
+           })  
+     } catch (error) {
+        res.status(500).send(error)
+     }
+}
+
+
 export const ProductControllers = {
     createProduct,
-    getAllProducts
+    getAllProducts,
+    getProductById
 }
