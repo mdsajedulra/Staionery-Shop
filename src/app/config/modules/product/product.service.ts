@@ -19,7 +19,7 @@ const getSpacificProductFromDB = async (productId: string) => {
 };
 // update a product by id in db
 const UpdateProductInDB = async (productId: string, updateDetails: object) => {
-  console.log(productId, updateDetails);
+  // console.log(productId, updateDetails);
   const result = await ProductModel.findByIdAndUpdate(
     productId,
     updateDetails,
