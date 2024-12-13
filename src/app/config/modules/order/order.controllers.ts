@@ -9,7 +9,7 @@ const createOrder = async (req: Request, res: Response) => {
     const result = await orderService.createOrderInDB(zodParseData);
 
     res.status(200).json({
-      message: "Product created successfully",
+      message: "Order created successfully",
       success: true,
       data: result,
     });

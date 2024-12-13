@@ -18,7 +18,7 @@ const createProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(404).send(error);
   }
 };
 // Get All Stationery Products constroller
@@ -41,17 +41,23 @@ const getAllProducts = async (req: Request, res: Response) => {
 
 const getProductById = async (req: Request, res: Response) => {
   const { productId } = req.params;
-  const result = await productService.getSpacificProductFromDB(productId);
   try {
+    const result = await productService.getSpacificProductFromDB(productId);
+
     res.status(200).json({
-      message: "Product retrieved successfully",
+      message: "Products retrieved successfully",
       success: true,
       data: result,
     });
-  } catch (error) {
-    res.status(500).send(error);
+  } catch (err: any) {
+    if (err.name === "CastError") {
+      const message = `Product not found. Invalid ID`;
+      res.status(404).send(message);
+    }
+    res.status(500).send(err);
   }
 };
+
 //update a  product
 
 const updateProductById = async (req: Request, res: Response) => {
