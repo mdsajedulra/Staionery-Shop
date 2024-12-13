@@ -18,7 +18,10 @@ const getSpacificProductFromDB = async (productId: string) => {
   return result;
 };
 // update a product by id in db
-const UpdateProductInDB = async (productId: string, updateDetails: object) => {
+const UpdateProductInDB = async (
+  productId: string,
+  updateDetails: Partial<StationeryProductType>
+) => {
   // console.log(productId, updateDetails);
   const result = await ProductModel.findByIdAndUpdate(
     productId,
@@ -29,9 +32,16 @@ const UpdateProductInDB = async (productId: string, updateDetails: object) => {
   );
   return result;
 };
+// delete a product by id in db
+const deleteProductFromDB = async (productId: string) => {
+  // console.log(productId, updateDetails);
+  const result = await ProductModel.findByIdAndDelete(productId);
+  return result;
+};
 export const productService = {
   createProductIntoDB,
   getAllProductFromDB,
   getSpacificProductFromDB,
   UpdateProductInDB,
+  deleteProductFromDB,
 };
