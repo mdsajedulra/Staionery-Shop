@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
-import { IOrder } from "./order.interfact";
-import { ProductModel } from "../product/product.model";
+import mongoose, { Schema } from 'mongoose';
+import { IOrder } from './order.interfact';
+import { ProductModel } from '../product/product.model';
 
 const OrderSchema = new Schema<IOrder>(
   {
@@ -25,10 +25,10 @@ const OrderSchema = new Schema<IOrder>(
   },
   {
     timestamps: true, // Adds createdAt and updatedAt timestamps
-  }
+  },
 );
 
-OrderSchema.pre("save", async function (next) {
+OrderSchema.pre('save', async function (next) {
   // console.log(this);
   try {
     const product = await ProductModel.findById(this.product);
@@ -47,4 +47,4 @@ OrderSchema.pre("save", async function (next) {
   }
 });
 
-export const OrderModel = mongoose.model("Order", OrderSchema);
+export const OrderModel = mongoose.model('Order', OrderSchema);

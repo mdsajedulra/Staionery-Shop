@@ -1,5 +1,5 @@
-import StationeryProductType from "./product.interface";
-import { ProductModel } from "./product.model";
+import StationeryProductType from './product.interface';
+import { ProductModel } from './product.model';
 
 //create product on database
 const createProductIntoDB = async (product: StationeryProductType) => {
@@ -20,7 +20,7 @@ const getSpacificProductFromDB = async (productId: string) => {
 // update a product by id in db
 const UpdateProductInDB = async (
   productId: string,
-  updateDetails: Partial<StationeryProductType>
+  updateDetails: Partial<StationeryProductType>,
 ) => {
   // console.log(productId, updateDetails);
   const result = await ProductModel.findByIdAndUpdate(
@@ -28,7 +28,7 @@ const UpdateProductInDB = async (
     updateDetails,
     {
       new: true,
-    }
+    },
   );
   return result;
 };

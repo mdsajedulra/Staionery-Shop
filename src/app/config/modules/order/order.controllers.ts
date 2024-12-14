@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { orderService } from "./order.service";
-import { OrderSchemaValidation } from "./order.validation";
+import { Request, Response } from 'express';
+import { orderService } from './order.service';
+import { OrderSchemaValidation } from './order.validation';
 
 const createOrder = async (req: Request, res: Response) => {
   try {
@@ -9,7 +9,7 @@ const createOrder = async (req: Request, res: Response) => {
     const result = await orderService.createOrderInDB(zodParseData);
 
     res.status(200).json({
-      message: "Order created successfully",
+      message: 'Order created successfully',
       success: true,
       data: result,
     });
@@ -26,7 +26,7 @@ const calculateRevenue = async (req: Request, res: Response) => {
     const result = await orderService.calculateRevenue();
 
     res.status(200).json({
-      message: "Revenue calculated successfully",
+      message: 'Revenue calculated successfully',
       success: true,
       data: result,
     });

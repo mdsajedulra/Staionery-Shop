@@ -1,11 +1,9 @@
-import { model, Schema } from "mongoose";
-import StationeryProductType from "./product.interface";
-
-
-
+import { model, Schema } from 'mongoose';
+import StationeryProductType from './product.interface';
 
 // staioner product schema
-const StationeryProductTypeSchema = new Schema<StationeryProductType>({
+const StationeryProductTypeSchema = new Schema<StationeryProductType>(
+  {
     name: {
       type: String,
       required: true,
@@ -20,7 +18,13 @@ const StationeryProductTypeSchema = new Schema<StationeryProductType>({
     },
     category: {
       type: String,
-      enum: ['Writing', 'Office Supplies', 'Art Supplies', 'Educational', 'Technology'],
+      enum: [
+        'Writing',
+        'Office Supplies',
+        'Art Supplies',
+        'Educational',
+        'Technology',
+      ],
       required: true,
     },
     description: {
@@ -36,9 +40,11 @@ const StationeryProductTypeSchema = new Schema<StationeryProductType>({
       type: Boolean,
       required: true,
     },
-    
-  },{ timestamps: true });
+  },
+  { timestamps: true },
+);
 
-  export const ProductModel = model<StationeryProductType>('product', StationeryProductTypeSchema);
-
-  
+export const ProductModel = model<StationeryProductType>(
+  'product',
+  StationeryProductTypeSchema,
+);

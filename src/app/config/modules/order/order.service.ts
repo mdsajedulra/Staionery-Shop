@@ -1,5 +1,5 @@
-import { IOrder } from "./order.interfact";
-import { OrderModel } from "./order.model";
+import { IOrder } from './order.interfact';
+import { OrderModel } from './order.model';
 
 const createOrderInDB = async (payload: IOrder) => {
   const result = await OrderModel.create(payload);
@@ -11,7 +11,7 @@ const calculateRevenue = async () => {
       $group: {
         _id: null,
         totalRevenue: {
-          $sum: "$totalPrice",
+          $sum: '$totalPrice',
         },
       },
     },
