@@ -31,9 +31,7 @@ const getAllProducts = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    res.status(500).json({
-      message: 'something went rong',
-    });
+    res.status(500).send(error);
   }
 };
 
@@ -49,7 +47,7 @@ const getProductById = async (req: Request, res: Response) => {
       success: true,
       data: result,
     });
-  } catch (err: any) {
+  } catch (err) {
     if (err.name === 'CastError') {
       const message = `Product not found. Invalid ID`;
       res.status(404).send(message);

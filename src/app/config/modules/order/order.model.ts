@@ -41,7 +41,7 @@ OrderSchema.pre('save', async function (next) {
       await product.save();
       next();
     }
-  } catch (err: any) {
+  } catch (err) {
     // console.log(err);
     next(err);
   }
