@@ -11,7 +11,14 @@ app.use('/api', productRouter);
 app.use('/api', orderRouter);
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
+  res
+    .status(200)
+    .json({ sucess: true, message: 'Welcome to the Stationary Shop API' });
+});
+
+// unknown route error handle
+app.all('*', (req: Request, res: Response) => {
+  res.status(404).json({ sucess: false, message: 'Route not found' });
 });
 
 export default app;

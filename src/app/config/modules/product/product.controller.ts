@@ -53,7 +53,7 @@ const getProductById = async (req: Request, res: Response) => {
     // Narrowing down the type of 'error'
     if (error instanceof Error) {
       if (error.name === 'CastError') {
-        return res.status(404).json({
+        res.status(404).json({
           message: 'Product not found. Invalid ID',
           success: false,
         });
@@ -62,7 +62,7 @@ const getProductById = async (req: Request, res: Response) => {
       res.status(500).json({
         message: 'An unexpected error occurred',
         success: false,
-        error: error.message, // Safely access 'message' because 'error' is now of type 'Error'
+        error: error.message,
       });
     } else {
       // Handle unexpected non-error types (optional)
