@@ -32,8 +32,8 @@ OrderSchema.pre("save", async function (next) {
   // console.log(this);
   try {
     const product = await ProductModel.findById(this.product);
-    console.log(product);
-    if (product?.inStock === true && product.quantity > this.quantity) {
+    // console.log(product);
+    if (product?.inStock === true && product.quantity >= this.quantity) {
       product.quantity -= this.quantity;
       if (product.quantity === 0) {
         product.inStock = false;
@@ -42,8 +42,8 @@ OrderSchema.pre("save", async function (next) {
       next();
     }
   } catch (err: any) {
-    next(err);
     // console.log(err);
+    next(err);
   }
 });
 
