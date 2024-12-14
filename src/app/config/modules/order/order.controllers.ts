@@ -15,7 +15,11 @@ const createOrder = async (req: Request, res: Response) => {
     });
   } catch (error) {
     // res.status(500).send(error);
-    console.log(error);
+    if (error) {
+      res.status(500).send({
+        message: 'Insufficient stock or product is out of stock',
+      });
+    }
   }
 };
 

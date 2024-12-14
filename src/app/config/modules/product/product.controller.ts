@@ -43,16 +43,34 @@ const getProductById = async (req: Request, res: Response) => {
     const result = await productService.getSpacificProductFromDB(productId);
 
     res.status(200).json({
-      message: 'Products retrieved successfully',
+      message: 'Product retrieved successfully',
       success: true,
       data: result,
     });
-  } catch (err) {
-    if (err.name === 'CastError') {
-      const message = `Product not found. Invalid ID`;
-      res.status(404).send(message);
+  } catch (error) {
+    console.error(error);
+
+    // Narrowing down the type of 'error'
+    if (error instanceof Error) {
+      if (error.name === 'CastError') {
+        return res.status(404).json({
+          message: 'Product not found. Invalid ID',
+          success: false,
+        });
+      }
+
+      res.status(500).json({
+        message: 'An unexpected error occurred',
+        success: false,
+        error: error.message, // Safely access 'message' because 'error' is now of type 'Error'
+      });
+    } else {
+      // Handle unexpected non-error types (optional)
+      res.status(500).json({
+        message: 'An unexpected error occurred',
+        success: false,
+      });
     }
-    res.status(500).send(err);
   }
 };
 
